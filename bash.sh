@@ -64,5 +64,14 @@ EOF3
 
 echo "PS1='\[\033[1;32m\]\u\[\033[00m\]:\[\033[1;34m\]\w\[\033[1;31m\]\$(__git_ps1)\[\033[00m\] \$ '" >> $BASHRC
 
+cat <<EOF >> $BASHRC
+osascript \
+-e 'tell application "Terminal"' \
+-e 'set bounds of front window to {1, 1, 1000, 800}' \
+-e 'end tell'
+EOF
+
+brew install tig
+
 source $BASHRC
 
