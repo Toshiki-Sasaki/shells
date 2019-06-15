@@ -35,9 +35,20 @@ wget $ICEBERG_TERMINAL -O ~/Downloads/iceberg.zip
 unzip ~/Downloads/iceberg.zip -d ~/Downloads/Iceberg/
 ICEBERG=`find ~/Downloads/Iceberg | grep .terminal`
 
-TERM_PROFILE='Iceberg'
+TERM_PROFILE="Iceberg"
 open "$ICEBERG"
 defaults write com.apple.Terminal "Default Window Settings" -string "$TERM_PROFILE"
 defaults write com.apple.Terminal "Startup Window Settings" -string "$TERM_PROFILE"
+defaults write com.apple.Terminal TerminalOpaqueness 0.9
 defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
 
+cat <<EOF3 >> $BASHRC
+
+if [ $UID -eq 0 ]; then
+    PS1="\[\033[31m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
+else
+    PS1="\[\033[36m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
+fi
+EOF3
+
+sed -e '/EOF/d' $BASHRC
