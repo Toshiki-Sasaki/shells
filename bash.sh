@@ -35,7 +35,9 @@ wget $ICEBERG_TERMINAL -O ~/Downloads/iceberg.zip
 unzip ~/Downloads/iceberg.zip -d ~/Downloads/Iceberg/
 ICEBERG=`find ~/Downloads/Iceberg | grep .terminal`
 
-echo $ICEBERG
+TERM_PROFILE='Iceberg'
+open "$ICEBERG"
+defaults write com.apple.Terminal "Default Window Settings" -string "$TERM_PROFILE"
+defaults write com.apple.Terminal "Startup Window Settings" -string "$TERM_PROFILE"
+defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
 
-
- 
